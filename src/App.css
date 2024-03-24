@@ -1,38 +1,370 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: roboto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App{
+  padding: 0 100px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.shadow-background {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.mobile-menu.open ~ .shadow-background {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.nav-top{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 1.25rem;
+  margin-top: 20px;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  padding: .2rem 0;
+  transition: top 0.3s ease-in-out;
+  z-index: 1000;
+} 
+
+.hidden {
+  background-color: #ffffff;
+  padding-bottom: 20px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.hidden .nav-bottom >div::after{
+  color: #fff;
+  display: none;
+}
+.nav-top .logo {
+  margin: 0 auto;
+  color: #fff;
+  font-size: 1.5rem;
+  color: #000000;
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(26, 33, 21, 0.5);
+}
+
+.search-img{
+  cursor: pointer;
+}
+
+.nav-top::after{
+  content: "";
+  height: 0.0625rem;
+  background-color: #E9E9E9;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.nav-bottom > div > ul {
+  display: flex;
+  justify-content: center;
+  gap: 2.65625rem;
+  margin-top: 1.5625rem;
+}
+
+.nav-bottom ul li {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-bottom ul li a {
+  color: #fff;
+  color: #000000;
+}
+
+.nav-bottom  > div::after{
+  content: "";
+  height: 0.0625rem;
+  background-color: #E9E9E9;
+  width: 100%;
+  position: absolute;
+  top: 130%;
+  bottom: 0;
+  left: 0;
+}
+
+span{
+  cursor: pointer;
+}
+
+.search{
+  margin-bottom: 0.625rem;
+  text-align: end;
+}
+
+.search-icon.active + .search-input {
+  display: block;
+}
+
+@keyframes expandInput {
+  0% {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 15.625rem;
+    padding: 0.625rem;
+    opacity: 1;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@keyframes shrinkInput {
+  0% {
+    width: 15.625rem;
+    padding: 0.625rem;
+    opacity: 1;
+  }
+  50% {
+    width: 12.5rem;
+    padding: 0.3125rem;
+    opacity: 0.5;
+  }
+  100% {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}
+
+.search-input {
+  width: 0;
+  padding: 0;
+  border: none;
+  border-bottom: 0.125rem solid #1e251e;
+  border-radius: 1.25rem;
+  opacity: 0;
+  transition: width 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input.open {
+  animation: expandInput 0.9s forwards;
+}
+
+.search-input.close {
+  animation: shrinkInput 0.9s forwards;
+}
+
+
+.submenu {
+  position: relative;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  gap: 0.625rem;
+  background-color: #fff;
+  padding: 1.25rem 0;
+  width: 12.5rem;
+  border: 0.0625rem #E9E9E9;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  z-index: 100;
+}
+
+.nav-bottom ul li {
+  position: relative;
+}
+
+.nav-bottom ul li:hover .submenu {
+  display: flex;
+}
+
+.submenu li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: .7s;
+}
+
+.submenu li a {
+  color: #000;
+  text-decoration: none;
+}
+
+.submenu li a:hover{
+  color: #969696;
+}
+
+.submenu li:hover {
+  margin-left: 1.25rem;
+}
+
+.submenu li::after{
+  position: absolute;
+  content: '';
+  height: 0.0625rem;
+  background-color: #E9E9E9;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.material-symbols-outlined {
+  text-decoration: none;
+}
+
+
+.cart-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.cart-wrapper > div {
+  padding: 1.25rem;
+}
+
+
+.cart-wrapper h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.cart-wrapper p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cart-wrapper img {
+  width: 100%;
+  margin-top: 0.625rem;
+}
+
+.cart{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 0.625rem;
+}
+
+.row{
+  display: flex;
+  gap: 0.625rem;
+}
+
+.tag{
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #EB0028;
+}
+
+.title{
+  color: #000000;
+}
+
+.autor{
+  color: #000000;
+}
+
+.date{
+  color: #9B9B9B;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.views{ 
+  color: #9B9B9B;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.text{
+  color: #9B9B9B;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 50%;
+  background-color: #fff;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.close-button {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+@media only screen and (max-width: 992px) {
+  .nav-top {
+    background-color: #ffffff;
   }
-  to {
-    transform: rotate(360deg);
+
+  .nav-bottom ul li {
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .nav.sticky {
+    top: -200px;
+    transition: top 0.3s ease-in-out;
+  }
+
+ 
+
+  nav.stuck {
+    top: 0;
   }
 }
