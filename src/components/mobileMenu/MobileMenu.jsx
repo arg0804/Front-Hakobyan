@@ -1,6 +1,6 @@
 import React from 'react';
 import './MobileMenu.css';
-import logo from '../assets/images/Logotype.svg';
+import logo from '../../assets/images/Logotype.svg';
 
 const MobileMenu = ({ isOpen, onClose }) => {
   return (
@@ -23,7 +23,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           <span className="material-symbols-outlined">
             expand_more
           </span>
-          <ul className="submenu">
+          <ul className="submenu-hover">
             <li><a href="#">Post Header</a></li>
             <li><a href="#">Post Layout</a></li>
             <li><a href="#">Share Buttons</a></li>
@@ -40,7 +40,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         <li>
           <a href="#">Categories</a>
           <span className="material-symbols-outlined">
-            expand_more
+            expand_more 
           </span>
         </li>
         <li>

@@ -7,8 +7,8 @@
   font-family: roboto;
 }
 
-.App{
-  padding: 0 100px;
+.sections{
+  padding: 0 110px;
 }
 
 .overlay {
@@ -29,6 +29,14 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.App-header {
+  position: sticky;
+  top: 0;
+  padding: .2rem 0;
+  background-color: #ffffff;
+  z-index: 1000;
+  transition: top 0.3s ease-in-out, background-color 0s; 
+}
 
 .nav-top{
   position: relative;
@@ -38,27 +46,23 @@
   gap: 1.25rem;
   padding: 0 1.25rem;
   margin-top: 20px;
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  padding: .2rem 0;
-  transition: top 0.3s ease-in-out;
-  z-index: 1000;
 } 
+
+.App-header.hidden {
+  transition: top 0.3s ease-in-out;
+  background-color: #ffffff;
+}
 
 .hidden {
   background-color: #ffffff;
   padding-bottom: 20px;
-  font-size: 22px;
-  font-weight: 800;
 }
 
 .hidden .nav-bottom >div::after{
   color: #fff;
   display: none;
 }
+
 .nav-top .logo {
   margin: 0 auto;
   color: #fff;
@@ -105,7 +109,7 @@ nav {
   background-color: #E9E9E9;
   width: 100%;
   position: absolute;
-  top: 130%;
+  top: 120%;
   bottom: 0;
   left: 0;
 }
@@ -137,7 +141,7 @@ span{
 }
 
 @keyframes shrinkInput {
-  0% {
+  100% {
     width: 15.625rem;
     padding: 0.625rem;
     opacity: 1;
@@ -147,7 +151,7 @@ span{
     padding: 0.3125rem;
     opacity: 0.5;
   }
-  100% {
+  0% {
     width: 0;
     padding: 0;
     opacity: 0;
@@ -157,9 +161,8 @@ span{
 .search-input {
   width: 0;
   padding: 0;
-  border: none;
-  border-bottom: 0.125rem solid #1e251e;
-  border-radius: 1.25rem;
+  border: 2px solid #000000;
+  border-radius: 1rem;
   opacity: 0;
   transition: width 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
 }
@@ -209,19 +212,19 @@ span{
   font-size: 0.8125rem;
   font-weight: 400;
   cursor: pointer;
-  transition: .7s;
 }
 
 .submenu li a {
   color: #000;
   text-decoration: none;
+  transition: .7s;
 }
 
 .submenu li a:hover{
   color: #969696;
 }
 
-.submenu li:hover {
+.submenu li a:hover {
   margin-left: 1.25rem;
 }
 
@@ -230,10 +233,10 @@ span{
   content: '';
   height: 0.0625rem;
   background-color: #E9E9E9;
-  width: 100%;
+  width: 75%;
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 20px;
 }
 
 .material-symbols-outlined {
@@ -347,7 +350,7 @@ span{
 
 
 @media only screen and (max-width: 992px) {
-  .nav-top {
+  .App-header {
     background-color: #ffffff;
   }
 
